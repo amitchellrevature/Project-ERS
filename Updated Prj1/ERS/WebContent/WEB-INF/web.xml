@@ -8,7 +8,7 @@
     <description></description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
-    <servlet-class>Login</servlet-class>
+    <servlet-class>servlets.Login</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -20,7 +20,7 @@
     <description></description>
     <display-name>ProcessTickets</display-name>
     <servlet-name>ProcessTickets</servlet-name>
-    <servlet-class>ProcessTickets</servlet-class>
+    <servlet-class>servlets.ProcessTickets</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProcessTickets</servlet-name>
@@ -31,7 +31,7 @@
     <description></description>
     <display-name>History</display-name>
     <servlet-name>History</servlet-name>
-    <servlet-class>History</servlet-class>
+    <servlet-class>servlets.History</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>History</servlet-name>
@@ -42,7 +42,7 @@
     <description></description>
     <display-name>Reimburse</display-name>
     <servlet-name>Reimburse</servlet-name>
-    <servlet-class>Reimburse</servlet-class>
+    <servlet-class>servlets.Reimburse</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Reimburse</servlet-name>
@@ -53,7 +53,7 @@
     <description></description>
     <display-name>Logout</display-name>
     <servlet-name>Logout</servlet-name>
-    <servlet-class>Logout</servlet-class>
+    <servlet-class>servlets.Logout</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
@@ -64,7 +64,7 @@
     <description></description>
     <display-name>EmployeeHistoryTickets</display-name>
     <servlet-name>EmployeeHistoryTickets</servlet-name>
-    <servlet-class>EmployeeHistoryTickets</servlet-class>
+    <servlet-class>servlets.EmployeeHistoryTickets</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EmployeeHistoryTickets</servlet-name>

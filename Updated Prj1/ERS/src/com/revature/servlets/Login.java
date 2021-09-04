@@ -1,10 +1,11 @@
+package servlets;
+
+import requests.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.sql.SQLException;
-
+import org.apache.log4j.Logger;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,8 +17,11 @@ public class Login extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 931175993433480040L;
-
+	
+	private static final Logger logger = ConnectionFactory.configLogger(Login.class);
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		logger.info("GET REQUEST MADE TO LOGIN");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("index.html").include(request, response);
@@ -25,6 +29,7 @@ public class Login extends HttpServlet{
     }
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		logger.info("POST REQUEST MADE TO LOGIN");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		

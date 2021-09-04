@@ -1,5 +1,10 @@
+package servlets;
+
+import requests.*;
 import java.io.PrintWriter;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,9 +16,11 @@ public class Reimburse extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 377404989771189769L;
+	
+	private static final Logger logger = ConnectionFactory.configLogger(Logout.class);
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-		
+		logger.info("POST REQUEST MADE TO REIMBURSE TICKET");
 		res.setContentType("text/html");
 		try(PrintWriter write = res.getWriter()){
 						

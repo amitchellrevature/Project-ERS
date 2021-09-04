@@ -1,11 +1,12 @@
+package servlets;
+
+import requests.*;
 import java.io.IOException;
-
 import java.io.PrintWriter;
-
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
-
+import org.apache.log4j.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +20,10 @@ public class History extends HttpServlet{
 	 */
 	private static final long serialVersionUID = -5882749965320313261L;
 
+	private static final Logger logger = ConnectionFactory.configLogger(History.class);
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		logger.info("GET REQUEST MADE TO HISTORY");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 //		request.getRequestDispatcher("tickets.html").include(request, response);

@@ -1,3 +1,4 @@
+package requests;
 import java.sql.*;
 
 import java.text.DecimalFormat;
@@ -67,7 +68,7 @@ public class TicketsImpl implements TicketsDAO {
        	SessionFactory factory = ConnectionFactory.configHibernate().buildSessionFactory();
     	Session session = factory.openSession();
     	String table = "from Tickets where EmpID= :empId";
-    	Query query = session.createQuery(table);
+		Query query = session.createQuery(table);
     	query.setParameter("empId", empID);
     	List<Tickets> allTickets = query.list();
     	session.close();

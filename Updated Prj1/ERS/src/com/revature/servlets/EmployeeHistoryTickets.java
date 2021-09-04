@@ -1,13 +1,15 @@
+package servlets;
+
+import requests.*;
 import java.io.IOException;
-
 import java.io.PrintWriter;
-
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
 
-//import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 
+//import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,10 +23,12 @@ public class EmployeeHistoryTickets extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -3997757796385622659L;
+	
+	private static final Logger logger = ConnectionFactory.configLogger(EmployeeHistoryTickets.class);
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 //		Gson gson = new Gson();
-
+		logger.info("GET REQUEST MADE TO EMPLOYEE HISTORY TICKETS");
 		res.setContentType("text/html");
 		res.setCharacterEncoding("UTF-8");
 		PrintWriter out = res.getWriter();
@@ -52,10 +56,9 @@ public class EmployeeHistoryTickets extends HttpServlet {
 					
 					out.println("<h5 class='text-center text-warning'>No tickets to show</h5>");
 				} else {
-					
+					out.println("<h5 class='text-center text-warning'>Employee Id: " + empID + "</h5>");
 					for(Tickets ticket : allTickets) {
-						out.println("<h5 class='text-center text-warning'>Employee Id: " + empID + "</h5>" +
-							  "<section class='text-warning w-50 container p-5 bg-dark bg-gradient opacity-75 shadow-lg rounded-3 border border-2 border-success'><div>" +
+						out.println("<section class='text-warning w-50 container p-5 bg-dark bg-gradient opacity-75 shadow-lg rounded-3 border border-2 border-success'><div>" +
 		                      "Ticket: " + ticket.getTicketId() + "<br>" +
 		                      "Type: " + ticket.getExpType() + "<br>" +
 		                      "Amount: $" + df.format(ticket.getAmount()) + "<br>" +

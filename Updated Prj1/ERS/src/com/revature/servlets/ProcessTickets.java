@@ -1,10 +1,12 @@
+package servlets;
+
+import requests.*;
 import java.io.IOException;
-
 import java.io.PrintWriter;
-
 import java.sql.SQLException;
-
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -18,9 +20,11 @@ public class ProcessTickets extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 3856425543358836562L;
+	
+	private static final Logger logger = ConnectionFactory.configLogger(ProcessTickets.class);
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+		logger.info("GET REQUEST MADE TO PROCESS TICKETS");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
@@ -56,7 +60,7 @@ public class ProcessTickets extends HttpServlet{
     }
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+		logger.info("POST REQUEST MADE TO PROCESS TICKETS");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
