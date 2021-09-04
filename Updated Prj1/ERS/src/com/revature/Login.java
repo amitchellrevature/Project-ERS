@@ -1,16 +1,21 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
+
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class Login extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 931175993433480040L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
@@ -26,7 +31,7 @@ public class Login extends HttpServlet{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		TicketDAO ticketDAO = new TicketDAO();
+		TicketsImpl ticketDAO = new TicketsImpl();
 		
 		try {
 			int empID = ticketDAO.login(username, password);
@@ -35,14 +40,15 @@ public class Login extends HttpServlet{
 				request.getRequestDispatcher("index.html").include(request, response);
 				out.println("<h5 class='text-center text-warning'>Incorrect username and password</h5>");
 			} else {
-				Cookie cookie = new Cookie("empID", String.valueOf(empID));
-				response.addCookie(cookie);
+//				Cookie cookie = new Cookie("empID", String.valueOf(empID));
+//				response.addCookie(cookie);
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
 				session.setAttribute("password", password);
+				session.setAttribute("empID", empID);
 				
-				response.sendRedirect("Tickets");
+				response.sendRedirect("ProcessTickets");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,4 +57,3 @@ public class Login extends HttpServlet{
 		out.close();
     }
 }
-

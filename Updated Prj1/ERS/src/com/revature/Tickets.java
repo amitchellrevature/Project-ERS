@@ -1,72 +1,107 @@
+import java.util.Date;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Tickets extends HttpServlet{
-
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		HttpSession session = request.getSession(false);
-		String username = String.valueOf(session.getAttribute("username"));
-		String password = String.valueOf(session.getAttribute("password"));
-		
-		if(username.equalsIgnoreCase("") & password.equalsIgnoreCase("")) {
-			
-			request.getRequestDispatcher("index.html").include(request, response);
-			out.println("<h5 class='text-center text-warning'>Please login first</h5>");
-		} else {
-			request.getRequestDispatcher("tickets.html").include(request, response);
-			
-			TicketDAO ticketDAO = new TicketDAO();
-			
-			Cookie[] cookie = request.getCookies();
-			
-			try {
-				if(ticketDAO.manage(Integer.valueOf(cookie[0].getValue())))
-					request.getRequestDispatcher("history.html").include(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		out.close();
-    }
+@Entity
+@Table(name="ticket")
+public class Tickets {
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		String type = request.getParameter("type");
-		double amount = Double.valueOf(request.getParameter("amount"));
-		String description = request.getParameter("description");
-		
-		request.getRequestDispatcher("tickets.html").include(request, response);
+	@Id
+	@Column(name="TicketID")
+	private int ticketId;
+	
+	@Column(name="EmpID")
+	private int empId;
+	
+	@Column(name="Type")
+	private String expType;
+	
+	@Column(name="Amount")
+	private double amount;
+	
+	@Column(name="Description")
+	private String desc;
+	
+	@Column(name="Time")
+	private Date date;
+	
+	@Column(name="Status")
+	private String stat; 
+	
+	public Tickets () {}
+	
+	public Tickets(int ticketId, int empId, String expType, double amount, String desc, Date date, String stat) {
+		this.ticketId = ticketId;
+		this.empId = empId;
+		this.expType = expType;
+		this.amount = amount;
+		this.desc = desc;
+		this.date = date;
+		this.stat = stat;
+	}
 
-		TicketDAO ticketDAO = new TicketDAO();
-		
-		Cookie[] cookie = request.getCookies();
-		
-		try {
-			ticketDAO.request(Integer.valueOf(cookie[0].getValue()), type, amount, description);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			if(ticketDAO.manage(Integer.valueOf(cookie[0].getValue())))
-				request.getRequestDispatcher("history.html").include(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		out.close();
-    }
+	public int getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public int getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+
+	public String getExpType() {
+		return expType;
+	}
+
+	public void setExpType(String expType) {
+		this.expType = expType;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getStat() {
+		return stat;
+	}
+
+	public void setStat(String stat) {
+		this.stat = stat;
+	}
+
+	@Override
+	public String toString() {
+		return "Tickets [ticketId=" + ticketId + ", empId=" + empId + ", expType=" + expType + ", amount=" + amount
+				+ ", desc=" + desc + ", date=" + date + ", stat=" + stat + "]";
+	}
 }
-

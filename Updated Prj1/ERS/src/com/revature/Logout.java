@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,6 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class Logout extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2269853261244707653L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
