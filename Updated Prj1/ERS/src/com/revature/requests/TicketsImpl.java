@@ -1,10 +1,7 @@
 package requests;
 import java.sql.*;
-
 import java.text.DecimalFormat;
-
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -13,6 +13,7 @@
         background-image: url('https://th.bing.com/th/id/R.652febad2c58cfb6dadb56e603036348?rik=fy6P59woggfc0Q&riu=http%3a%2f%2fwww.bphope.com%2fwp-content%2fuploads%2f2015%2f02%2fworld-money.jpg&ehk=uefvsTGUY59yaGNVehjj1cp5jsK2cOTr4kjce7BrG2Y%3d&risl=&pid=ImgRaw&r=0');
     }
 </style>
+<script src="fetch.js"></script>
 </head>
 <body class="bg-success">
 
@@ -43,7 +44,7 @@
 	</div>
 	<form method="post" action="ProcessTickets">
 		<div class="form-group p-3">
-			<label class="text-warning p-2"><u>Reimbursement Type:</u></label><br>
+			<label class="text-warning p-2"><span><u>Reimbursement Type:</u></span></label><br>
 			
 			<input type="radio" id="lodging" name="type" value="Lodging">
 			<label class="text-warning" for="lodging">Lodging</label><br>
@@ -73,11 +74,12 @@
 		</div>
 	</form>
 	
-	<form method="get" action="EmployeeHistoryTickets">
-		<div class="text-center my-2">
-			<input type="submit" class="btn btn-success" value="View Past Tickets"/>
-		</div>
-	</form>
+	<div class="text-center my-2">
+		<button onclick="fetchEmployeeTickets()" class="btn btn-success">View Past Tickets</button>
+	</div>
 </div>
+
+<section id="content"></section>
+
 </body>
 </html>

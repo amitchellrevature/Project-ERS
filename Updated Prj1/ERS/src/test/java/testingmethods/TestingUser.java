@@ -1,4 +1,4 @@
-package tests;
+package testingmethods;
 
 import requests.*;
 import static org.junit.Assert.*;

@@ -1,9 +1,8 @@
 package requests;
 import java.sql.*;
-
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.EnhancedPatternLayout;
-import org.apache.log4j.FileAppender;
+//import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
